@@ -17,10 +17,12 @@ skip_read = False
 
 def get_send_info(path):
     config = configparser.ConfigParser()
-    config.read(path)
+    config.read(path, encoding='utf-8')
     receivers = config.get('SMTP', 'receivers').split(',')
     topic = config.get('SMTP', 'topic')
     attachments = config.get('SMTP', 'attachments').split(',')
+    if len(attachments) == 1 and attachments[0] == '':
+        attachments = []
     return receivers, topic, attachments
 
 
@@ -39,7 +41,7 @@ def get_mail_text(path):
 
 def execute_command(sock: socket.socket, command):
     print(f'C: {command}')
-    sock.send(command.encode())
+    sock.send(command.encode('utf-8'))
     if not skip_read:
         data = sock.recv(4096)
         print(f"S: {data.decode('ascii', errors='ignore')}")

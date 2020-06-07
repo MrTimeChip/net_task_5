@@ -6,6 +6,6 @@ FILE_TEMPLATE = 'Content-Type:application/octet-stream;name="{0}"\n' \
                 'Content-Disposition:attachment;filename="{0}"\n' \
                 '\n\r' \
                 '{1}'
-PLAIN_TEXT_TEMPLATE = 'Content-Type: text/plain; charset=us-ascii\n' \
+PLAIN_TEXT_TEMPLATE = 'Content-Type: text/plain; charset=utf-8\n' \
                       '\n\r' \
                       '{0}'
